@@ -1,0 +1,282 @@
+#**********************************************************************#
+# Data Dictionary                                                      #
+#**********************************************************************#
+
+#######################################################################
+# SERIALNO - Housing unit/GQ person serial number
+#######################################################################
+# DIVISION - Division code
+#   0 .Puerto Rico
+#   1 .New England (Northeast region)
+#   2 .Middle Atlantic (Northeast region)
+#   3 .East North Central (Midwest region)
+#   4 .West North Central (Midwest region)
+#   5 .South Atlantic (South region)
+#   6 .East South Central (South region)
+#   7 .West South Central (South Region)
+#   8 .Mountain (West region)
+#   9 .Pacific (West region)
+#######################################################################
+# REGION - Region code
+#   1 .Northeast
+#   2 .Midwest
+#   3 .South
+#   4 .West
+#   9 .Puerto Rico
+#######################################################################
+# WGTP  - Housing Weight
+#   00000 .Group Quarters place holder record
+#   00001..09999 .Integer weight of housing unit
+#######################################################################
+# NP -Number of person records following this housing record
+#   00 .Vacant unit
+#   01 .One person record (one person in household or any person in group quarters)
+#   02..20 .Number of person records (number of persons in.household)
+#######################################################################
+# TYPE - Type of unit
+#   1 .Housing unit
+#   2 .Institutional group quarters
+#   3 .Noninstitutional group quarters
+#######################################################################
+# ACR - Lot size
+#   b .N/A (GQ/not a one-family house or mobile home)
+#   1 .House on less than one acre
+#   2 .House on one to less than ten acres
+#   3 .House on ten or more acres
+#######################################################################
+# BATH - Bathtub or shower
+#   b .N/A (GQ)
+#   1 .Yes
+#   2 .No
+#######################################################################
+# BDSP - Number of bedrooms
+#   bb .N/A (GQ)
+#   00..99 .0 to 99 bedrooms (Top-coded)
+#######################################################################
+# BLD - Units in structure
+#   bb .N/A (GQ)
+#   01 .Mobile home or trailer
+#   02 .One-family house detached
+#   03 .One-family house attached
+#   04 .2 Apartments
+#   05 .3-4 Apartments
+#   06 .5-9 Apartments
+#   07 .10-19 Apartments
+#   08 .20-49 Apartments
+#   09 .50 or more apartments
+#   10 .Boat, RV, van, etc.
+#######################################################################
+# BUS - Business or medical office on property
+#   b .N/A (GQ/not a one-family house or mobile home)
+#   1 .Yes
+#   2 .No
+#######################################################################
+# CONP - Condo fee (monthly amount)
+#   bbbb .N/A (GQ/vacant units, except “for sale-only” and “sold, not occupied”/not owned or being bought)
+#   0000 .Not condo (Owned/being bought)
+#   0001..9999 .$1 - $9999 (Rounded and top-coded)
+#######################################################################
+# Make 3 Features Out Of Variable
+
+# ELEP - Electricity (monthly cost)
+#   bbb .N/A (GQ/vacant)
+#   001 .Included in rent or in condo fee
+#   002 .No charge or electricity not used
+#   003..999 .$3 to $999 (Rounded and top-coded)
+#######################################################################
+# FULP - Fuel cost(yearly cost for fuels other than gas and electricity)     
+#   bbbb .N/A (GQ/vacant)
+#   0001 .Included in rent or in condo fee
+#   0002 .No charge or these fuels not used
+#   0003..9999 .$3 to $9999 (Rounded and top-coded)
+#######################################################################
+# GASP - Gas (monthly cost)
+#   bbb .N/A (GQ/vacant)
+#   001 .Included in rent or in condo fee
+#   002 .Included in electricity payment
+#   003 .No charge or gas not used
+#   004..999 .$4 to $999 (Rounded and top-coded)
+#######################################################################
+# HFL - House heating fuel
+#   b .N/A (GQ/vacant)
+#   1 .Utility gas
+#   2 .Bottled, tank, or LP gas
+#   3 .Electricity
+#   4 .Fuel oil, kerosene, etc.
+#   5 .Coal or coke
+#   6 .Wood
+#   7 .Solar energy
+#   8 .Other fuel
+#   9 .No fuel used
+#######################################################################
+#   INSP - Fire/hazard/flood insurance (yearly amount)
+#   bbbbb .N/A (GQ/vacant/not owned or being bought)
+#   00000 .None
+#   00001..10000 .$1 to $10000 (Rounded and top-coded)
+#######################################################################
+# REFR - Refrigerator
+#   b .N/A (GQ)
+#   1 .Yes
+#   2 .No
+#######################################################################
+# RMSP - Number of Rooms
+#   bb .N/A (GQ)
+#   00..99 .Rooms (Top-coded)
+#######################################################################
+# RNTM Meals included in rent/
+#   b .N/A (GQ/vacant units, except “for rent” and “rented,not occupied”/owned or being bought /occupied without rent payment)
+#   1 .Yes
+#   2 .No
+#######################################################################
+# RNTP - Monthly rent
+#   bbbbb .N/A (GQ/vacant units, except “for rent” and “rented, not occupied”/owned or being bought /occupied without rent payment) 
+#   00001..99999 .$1 to $99999 (Rounded and top-coded)
+#######################################################################
+# RWAT - Hot and cold running water
+#   b .N/A (GQ)
+#   1 .Yes
+#   2 .No
+#   9 .Case is from Puerto Rico, RWAT not applicable
+#######################################################################
+# STOV - Stove or range
+#   b .N/A (GQ)
+#   1 .Yes
+#   2 .No
+#######################################################################
+# TEN - Tenure
+#   b .N/A (GQ/vacant)
+#   1 .Owned with mortgage or loan (include home equity loans)
+#   2 .Owned free and clear
+#   3 .Rented
+#   4 .Occupied without payment of rent
+#######################################################################
+# TOIL - Flush toilet
+#   b .N/A (GQ)
+#   1 .Yes
+#   2 .No
+#######################################################################
+# VACS - Vacancy status
+#   b .N/A (GQ/occupied)
+#   1 .For rent
+#   2 .Rented, not occupied
+#   3 .For sale only
+#   4 .Sold, not occupied
+#   5 .For seasonal/recreational/occasional use
+#   6 .For migrant workers
+#   7 .Other vacant
+#######################################################################
+# VALP - Property value
+#   bbbbbbb .N/A (GQ/vacant units, except ”for-sale-only“ and ”sold, not occupied”/not owned or being .bought)
+#   0000001..9999999 .$1 to $9999999 (Rounded and top-coded)
+#######################################################################
+# WATP - Water (yearly cost)
+#   bbbb .N/A (GQ/vacant)
+#   0001 .Included in rent or in condo fee
+#   0002 .No charge
+#   0003..9999 .$3 to $9999 (Rounded and top-coded)
+#######################################################################
+# HOTWAT - Water heater (Puerto Rico only)
+#   b .N/A (GQ)
+#   1 .Yes
+#   2 .No
+#   9 .Case is from the United States, HOTWAT not applicable
+#######################################################################
+# KIT - Complete kitchen facilities
+#   b .N/A (GQ)
+#   1 .Yes, has stove or range, refrigerator, and sink with a faucet
+#   2 .No
+#######################################################################
+# PLM - Complete plumbing facilities
+#   b .N/A (GQ)
+#   1 .Yes, has hot and cold running water, a flush toilet, and a bathtub or shower
+#   2 .No
+#   9 .Case is from Puerto Rico, PLM recode not applicable
+#######################################################################
+# PLMPRP - Complete plumbing facilities for Puerto Rico 
+#   b .N/A (GQ) 
+#   1 .Yes, has running water, a flush toilet, and a bathtub or shower 
+#   2 .No 
+#   9 .Case is from the United States, PLMPRP not applicable
+#######################################################################
+# SRNT - Specified rent unit
+#   b .N/A
+#   0 .Not specified rent unit
+#   1 .Specified rent unit
+#######################################################################
+# TAXP - Property taxes (yearly amount)
+#   bb .N/A (GQ/vacant/not owned or being bought)
+#   01 .None
+#   02 .$ 1 - $ 49
+#   03 .$ 50 - $ 99
+#   04 .$ 100 - $ 149
+#   05 .$ 150 - $ 199
+#   06 .$ 200 - $ 249
+#   07 .$ 250 - $ 299
+#   08 .$ 300 - $ 349
+#   09 .$ 350 - $ 399
+#   10 .$ 400 - $ 449
+#   11 .$ 450 - $ 499
+#   12 .$ 500 - $ 549
+#   13 .$ 550 - $ 599
+#   14 .$ 600 - $ 649
+#   15 .$ 650 - $ 699
+#   16 .$ 700 - $ 749
+#   17 .$ 750 - $ 799
+#   18 .$ 800 - $ 849
+#   19 .$ 850 - $ 899
+#   20 .$ 900 - $ 949
+#   21 .$ 950 - $ 999
+#   22 .$1000 - $1099
+#   23 .$1100 - $1199
+#   24 .$1200 - $1299
+#   25 .$1300 - $1399
+#   26 .$1400 - $1499
+#   27 .$1500 - $1599
+#   28 .$1600 - $1699
+#   29 .$1700 - $1799
+#   30 .$1800 - $1899
+#   31 .$1900 - $1999
+#   32 .$2000 - $2099
+#   33 .$2100 - $2199
+#   34 .$2200 - $2299
+#   35 .$2300 - $2399
+#   36 .$2400 - $2499
+#   37 .$2500 - $2599
+#   38 .$2600 - $2699
+#   39 .$2700 - $2799
+#   40 .$2800 - $2899
+#   41 .$2900 - $2999
+#   42 .$3000 - $3099
+#   43 .$3100 - $3199
+#   44 .$3200 - $3299
+#   45 .$3300 - $3399
+#   46 .$3400 - $3499
+#   47 .$3500 - $3599
+#   48 .$3600 - $3699
+#   49 .$3700 - $3799
+#   50 .$3800 - $3899
+#   51 .$3900 - $3999
+#   52 .$4000 - $4099
+#   53 .$4100 - $4199
+#   54 .$4200 - $4299
+#   55 .$4300 - $4399
+#   56 .$4400 - $4499
+#   57 .$4500 - $4599
+#   58 .$4600 - $4699
+#   59 .$4700 - $4799
+#   60 .$4800 - $4899
+#   61 .$4900 - $4999
+#   62 .$5000 - $5499
+#   63 .$5500 - $5999
+#   64 .$6000 - $6999
+#   65 .$7000 - $7999
+#   66 .$8000 - $8999
+#   67 .$9000 - $9999
+#   68 .$10000+(Top-coded)
+#######################################################################
+# MIG - Mobility status (lived here 1 year ago)
+#   b .N/A (less than 1 year old)
+#   1 .Yes, same house (nonmovers)
+#   2 .No, outside US and Puerto Rico
+#   3 .No, different house in US or Puerto Rico
+#######################################################################

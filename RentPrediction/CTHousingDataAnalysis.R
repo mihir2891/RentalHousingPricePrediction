@@ -2,9 +2,9 @@
 # Author              : Mihir Sanghvi                             
 # Email Address       : mihir.sanghvi@uconn.edu                   
 # Date                : 11/23/2016                                
-# Dataset Source      : http://factfinder.census.gov/faces/tableservices/jsf/pages/productview.xhtml?pid=ACS_pums_csv_2015&prodType=document
-# Note                : Downloaded Connecticut Housing Unit Records Dataset from the above mentioned  link
-#Problem Definition   : Predicting Rental Property Prices based on the Rental Property Characteristics using US Census Housing Data
+# Dataset Source      : http://www.census.gov/programs-surveys/acs/data/pums.html
+# Note                : Downloaded Connecticut Housing Unit Records (Go to 2015 ACS 1-year PUMS) Dataset from the above mentioned link
+# Problem Definition  : Predicting Rental Property Prices based on the Rental Property Characteristics using US Census Housing Data
 #########################################################################################################################################
 
 # Remove comment from following code to install packages 
@@ -115,7 +115,7 @@ CTHousingData <- read.csv("F:/Atomized-Assignment/ss15hct.csv")
 # TEN - Rented(3) [Keep Only 3s]
 ###############################################################################################################
 
-# Total 235 Columns are present in the datasat 
+# Total 235 Columns are present in the dataset 
 nrow(CTHousingData)
 
 CTHousingRentalData <- filter(CTHousingData,NP>0,WGTP>0,TYPE==1,TEN==3)
@@ -192,8 +192,8 @@ CTHousingRentalFeatures$BUS <- factor(CTHousingRentalFeatures$BUS)
 # As we can see above, 
 # 1 refers to the case when electricity cost is added into monthly rent or condo fee 
 # 2 refers to the case when no electricity cost is taken from tenants/ not used 
-# We dont need to worry about N/A cases because we have already filtered out all GQ (Group Quaters) 
-# and Vacent household data 
+# We don't need to worry about N/A cases because we have already filtered out all GQ (Group Quarters) 
+# and Vacant household data 
 ###################################################
 
 # Created new Dummy variables for above mentioned cases 
@@ -247,7 +247,7 @@ CTHousingRentalFeatures$WATP <- ifelse(CTHousingRentalFeatures$WATP>2,CTHousingR
 # HFL - House heating fuel                     (Nominal)
 
 ###############################################################################################################
-# Continous Variables 
+# Continuous Variables 
 ###############################################################################################################
 
 # RNTP - Monthly rent  - TARGET VARIABLE
@@ -336,8 +336,8 @@ boxCox(reg1,family="yjPower",plotit = T)
 # Created new variable that is squared root of RNTP 
 CTHousingRentalFeatures$SQRT_RNTP = sqrt(CTHousingRentalFeatures$RNTP)
 
-# Tried to findout possible transformations on predictor variables using box tidwell,
-# However it was not shoing meaningful transformations, thus not performaing any transformation on predictor variable 
+# Tried to find out possible transformations on predictor variables using box tidwell,
+# However, it was not showing meaningful transformations, thus not performing any transformation on predictor variable 
 
 ###############################################################################################################
 # Make 75-25 Split for training and test dataset 
@@ -407,7 +407,7 @@ importance_matrix[order(importance_matrix[,c(1:10)]),]$Feature
 
 
 ###############################################################################################################
-# Exterme Value Analysis (Influential Observation Analysis using Cooks Distance)
+# Extreme Value Analysis (Influential Observation Analysis using Cooks Distance)
 ###############################################################################################################
 
 #Checking for Influential Observations  
@@ -461,7 +461,7 @@ res$anova
 # There are no such significant interactions which we can add in our model to improve accuracy 
 
 ###############################################################
-# Robust  Linear Regression 
+# Robust Linear Regression 
 # Allocates weights to the observations based on Cooks Distance 
 ###############################################################
 
@@ -515,8 +515,8 @@ vif(linearRegUpdated)
 # Model Estimates 
 round(coef(linearRegUpdated),2)^2
 
-# Since we have extereme values in predictor variables, model is not able to satisfy assumption of normality 
-# However since model is satisfying assumptions of homoscadisticity and there is no  multicollinearity
+# Since we have extreme values in predictor variables, model is not able to satisfy assumption of normality 
+# However, since model is satisfying assumptions of homoscedasticity and there is no multicollinearity
 # present in the data, model parameter estimates are reliable  
 
 linearReg <- glm(RNTP~RMSP+WATPIR+WATPNC+BLD+RNTM+ELEPIR+NP+GASPNR, data=trainRentalData)

@@ -1,4 +1,4 @@
-# Connecticut-Rental-Housing-Market-Analysis
+# Connecticut Rental Housing Market Analysis
 
 I have analyzed Connecticut rental housing prices (factors affecting the rent) with the help of publicly available PUMS (Public Use Microdata Samples) dataset from census.gov website.
 
